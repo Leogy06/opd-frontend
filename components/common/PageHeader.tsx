@@ -6,7 +6,7 @@ interface PageHeaderProps {
 }
 
 const textStyle = "font-bold text-xl ";
-const marginBtm = "mb-4";
+const marginBtm = "mb-4 ms-4";
 
 export default function PageHeader({ text, icon }: PageHeaderProps) {
   if (!icon) return <h1 className={`${textStyle} ${marginBtm}`}>{text}</h1>;
