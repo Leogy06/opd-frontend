@@ -1,3 +1,5 @@
+"use client";
+
 import { Hospital, Stethoscope, Users } from "lucide-react";
 import {
   Sidebar,
@@ -9,8 +11,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "./ui/sidebar";
+import { usePathname } from "next/navigation";
 
 export default function NavigationBar() {
+  const path = usePathname();
   const items = [
     {
       title: "Patients",
@@ -29,9 +33,9 @@ export default function NavigationBar() {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel asChild>
-            <div className="flex gap-3 items-center px-6 py-8">
+            <div className="flex gap-3 items-center  px-6 py-8">
               <div className="h-12 w-12 bg-linear-to-br from-blue-500 to-green-500 rounded-full flex items-center justify-center">
-                <Hospital size={30} />
+                <Hospital size={32} />
               </div>
               <h1 className=" text-lg font-bold leading-tight">OPD System</h1>
             </div>
@@ -41,7 +45,7 @@ export default function NavigationBar() {
               {items.map((i) => {
                 return (
                   <SidebarMenuItem key={i.title}>
-                    <SidebarMenuButton asChild>
+                    <SidebarMenuButton asChild isActive={i.url === path}>
                       <a href={i.url}>
                         <i.icon />
                         <span>{i.title}</span>
