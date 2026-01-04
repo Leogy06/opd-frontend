@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import NavigationBar from "@/components/NavigationBar";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import React from "react";
 
 export default function PageLayout({
@@ -12,14 +12,12 @@ export default function PageLayout({
     <main>
       <SidebarProvider>
         <NavigationBar />
-        <div className="flex-1 border">
-          <div className="flex flex-col">
-            <Header />
-            <div className="container mx-2 sm:mx-4 md:mx-6 lg:mx-8 py-10 ">
-              {children}
-            </div>
-          </div>
-        </div>
+        <SidebarInset>
+          <Header />
+          <main className="flex-1 overflow-y-auto">
+            <div className="container px-4 py-10">{children}</div>
+          </main>
+        </SidebarInset>
       </SidebarProvider>
     </main>
   );

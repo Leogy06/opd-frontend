@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { SidebarProvider } from "@/components/ui/sidebar";
 
 const openSans = Open_Sans({
   weight: ["400", "500", "600"], // Regular, Medium, SemiBold
@@ -28,7 +27,8 @@ export default function RootLayout({
           attribute={"class"}
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange>
+          disableTransitionOnChange
+        >
           {children}
         </ThemeProvider>
       </body>
