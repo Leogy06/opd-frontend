@@ -8,12 +8,11 @@ export default function Header() {
       {/* height and backgorund */}
       <div className="bg-accent shadow-sm shadow-background w-full h-18">
         {/* element container */}
-        <div className="container mx-auto py-3">
+        <div className=" py-3">
           {/* element positioning */}
-          <div className="flex items-center justify-between">
+          <div className="lex items-center justify-between">
             {/* sidebar triger + theme toggle */}
             <SidebarTrigger />
-            <ThemeToggle />
           </div>
         </div>
       </div>
