@@ -41,9 +41,12 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
+import { useCreatePatientMutation } from "@/services/patientApi";
 
 export default function PatientForm() {
   const [open, setOpen] = useState(false);
+  const [createPatient, { isLoading: isCreatePatientLoading }] =
+    useCreatePatientMutation();
   const form = useForm<PatientFormValues>({
     resolver: zodResolver(patientSchema),
     defaultValues: {
@@ -62,10 +65,14 @@ export default function PatientForm() {
     },
   });
 
-  const onSubmit = (values: PatientFormValues) => {
-    console.log("Error submitting form ");
-    console.log("Clicked!");
-    alert("Form submitted!\n" + JSON.stringify(values, null, 2));
+  const onSubmit = async (values: PatientFormValues) => {
+    try {
+      const response = await createPatient(values);
+
+      console.log("response ", response.data);
+    } catch (error) {
+      console.error("Unable to submit patient. ", error);
+    }
   };
 
   return (
@@ -89,9 +96,7 @@ export default function PatientForm() {
         </DialogHeader>
         <Form {...form}>
           <form
-            onSubmit={form.handleSubmit(onSubmit, (errors) => {
-              console.log("Errors ", errors);
-            })}
+            onSubmit={form.handleSubmit(onSubmit)}
             className="space-y-6 max-w-md mx-auto mt-10 p-4 w-full"
           >
             <FormField
